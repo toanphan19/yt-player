@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Playlist.css';
 
-class Thumbnail extends Component {
+class Thumbnail extends React.Component {
   // Input: imgUrl
   render() {
     return (
       <div className="video-thumbnail">
-        <img width="120" src={this.props.imgUrl} alt="Thumbnail" />
+        <img src={this.props.imgUrl} alt="Thumbnail" />
       </div>
     );
   }
 }
 
-class Info extends Component {
+class Info extends React.Component {
   // Input: title
   render() {
     return (
@@ -23,7 +23,7 @@ class Info extends Component {
   }
 }
 
-class Video extends Component {
+class Video extends React.Component {
   // Input: imgUrl
 
   render() {
@@ -36,12 +36,12 @@ class Video extends Component {
   }
 }
 
-class Playlist extends Component {
+class Playlist extends React.Component {
   // Input: videos[]
 
   render() {
     return (
-      <div className="playlist-container">
+      <div id="playlist-container">
         {this.props.videos.map(video => {
           return (<Video imgUrl={video.imgUrl} title={video.title} />);
         })}
