@@ -1,0 +1,12 @@
+.video-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.video-thumbnail {
+  margin: 5px;
+}
+
+.video-info {
+  margin: 5px 0;
+}
