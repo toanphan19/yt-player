@@ -22,7 +22,7 @@ class SubmitForm extends React.Component {
 
     return (
       <form id="add-playlist">
-        <label htmlFor="input-playlist-url">Enter your playlist ID here: (soon to be updated to URL)</label>
+        <label htmlFor="input-playlist-url">Enter your favourite playlist URL here:</label>
         <input type="text"
           className="form-control"
           placeholder="Enter playlist ID"
