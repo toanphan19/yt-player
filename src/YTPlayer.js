@@ -10,11 +10,12 @@ class YTPlayer extends React.Component {
     super(props);
     this.state = {
       inputText: "",
-      videos: [],
+      videos: (this.props.videos === undefined)? [] : this.props.videos,
       iFrameVideoId: this.props.videoId
     }
-
+    
     this.handleInputTextChange = this.handleInputTextChange.bind(this);
+    this.handleOnClickVideo = this.handleOnClickVideo.bind(this);
     this.handleSubmitButton = this.handleSubmitButton.bind(this);
   }
 
@@ -22,6 +23,10 @@ class YTPlayer extends React.Component {
     this.setState({
       inputText: e.target.value
     });
+  }
+
+  handleOnClickVideo(index) {
+    window.player.loadPlaylist(this.state.videos.map(x => x.id), index);
   }
 
   handleSubmitButton(e) {
@@ -52,12 +57,14 @@ class YTPlayer extends React.Component {
       }));
       this.setState({
         videos: videos
-      })
+      });
+
+      window.localStorage.setItem("ytvideos", JSON.stringify(videos));
 
       // Using window.player like this might good at all, but it's all I can do for now
 
-      window.player.cuePlaylist(videos.map(x => x.id));
-      window.player.playVideo();
+      window.player.loadPlaylist(this.state.videos.map(x => x.id));
+
     }
     request.send();
   
@@ -69,16 +76,23 @@ class YTPlayer extends React.Component {
   }
 
   render() {
-    const videos = this.state.videos;
-
     return (
-      <div className="container">
-        <IFrame videoId={this.state.iFrameVideoId}/>
-        <Playlist videos={videos} />
-        <SubmitForm
-          inputText={this.state.inputText}
-          handleInputTextChange={this.handleInputTextChange}
-          handleSubmitButton={this.handleSubmitButton} />
+      <div>
+        <div className="container-fluid d-flex justify-content-center">
+          <IFrame
+            videoId={this.state.iFrameVideoId}
+            height='405'
+            width='720'/>
+          <Playlist
+            videos={this.state.videos}
+            handleOnClickVideo={this.handleOnClickVideo} />
+        </div>
+        <div className="container">
+          <SubmitForm
+            inputText={this.state.inputText}
+            handleInputTextChange={this.handleInputTextChange}
+            handleSubmitButton={this.handleSubmitButton} />
+          </div>
       </div>
     );
   }
@@ -89,5 +103,10 @@ export default YTPlayer;
 
 // Utilities functions
 function extractPlaylistID(URL) {
+  if (URL.indexOf("list=") > 0) {
+    var idIndex = URL.indexOf("list=") + "list=".length;
+    return URL.slice(idIndex);
+  }
+
   return URL;
 }

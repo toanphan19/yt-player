@@ -26,12 +26,21 @@ class Info extends React.Component {
 }
 
 class Video extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnClickVideo = this.handleOnClickVideo.bind(this);
+  }
+
+  handleOnClickVideo(e) {
+    this.props.handleOnClickVideo(this.props.index);
+  }
+  
   render() {
     const imgUrl = this.props.imgUrl;
     const title = this.props.title;
 
     return (
-      <div className="video-container">
+      <div className="video-container" onClick={this.handleOnClickVideo}>
         <Thumbnail imgUrl={imgUrl} />
         <Info title={title} />
       </div>
@@ -40,15 +49,26 @@ class Video extends React.Component {
 }
 
 class Playlist extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnClickVideo = this.handleOnClickVideo.bind(this);
+  }
+
+  handleOnClickVideo(index) {
+    this.props.handleOnClickVideo(index);
+  }
+
   render() {
     const videos = this.props.videos;
 
     return (
       <div id="playlist-container">
-        {videos.map(v => 
+        {videos.map((v, index) => 
           <Video imgUrl={v.imgUrl}
             title={v.title}
-            key={v.title} />
+            key={v.title}
+            index={index}
+            handleOnClickVideo={this.handleOnClickVideo} />
         )}
       </div>
     );

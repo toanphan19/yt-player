@@ -1,7 +1,7 @@
 import React from "react";
 
 class IFrame extends React.Component {
-  // Input: videoId
+  // Input: videoId, height, width
 
   constructor(props) {
     super(props);
@@ -9,10 +9,10 @@ class IFrame extends React.Component {
 
     window.onYouTubeIframeAPIReady = () => {
       window.player = new window.YT.Player('player', {
-        height: '405',
-        width: '720',
+        height: this.props.height,
+        width: this.props.width,
         videoId: this.props.videoId,
-        playerVars: { 'autoplay': 1 },
+        // playerVars: { 'autoplay': 1 },
         events: {
           onStateChange: this.autoPlay
         }

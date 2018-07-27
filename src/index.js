@@ -6,8 +6,19 @@ import registerServiceWorker from './registerServiceWorker';
 import YTPlayer from './YTPlayer';
 
 
-
-ReactDOM.render(<YTPlayer videoId="q0yVJUuSZ10"/>, document.getElementById('root'));
+if (localStorage.getItem("ytvideos") === null) {
+  ReactDOM.render(
+    <YTPlayer videoId="q0yVJUuSZ10"/>,
+    document.getElementById('root')
+  );
+} else {
+  let videos = JSON.parse(localStorage.getItem("ytvideos"));
+  
+  ReactDOM.render(
+    <YTPlayer videoId={videos[0].id} videos={videos}/>,
+    document.getElementById('root')
+  );
+}
 
 registerServiceWorker();
 

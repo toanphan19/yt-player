@@ -10,6 +10,7 @@
 .video-container {
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 }
 
 .video-thumbnail {
@@ -23,3 +24,5 @@
 .video-info {
   margin: 5px 0;
 }
+
+

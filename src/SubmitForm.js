@@ -29,7 +29,7 @@ class SubmitForm extends React.Component {
           value={inputText}
           onChange={this.handleInputTextChange}/>
         <button type="submit"
-          className="btn btn-primary"
+          className="btn btn-outline-success"
           value="Submit"
           onClick={this.handleSubmitButton}>Submit</button>
       </form>
