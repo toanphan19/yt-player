@@ -6,7 +6,7 @@ class IFrame extends React.Component {
     this.init();
 
     window.onYouTubeIframeAPIReady = () => {
-      this.player = new window['YT'].Player('player', {
+      this.player = new window.YT.Player('player', {
         height: '405',
         width: '720',
         videoId: 'M7lc1UVf-VE',
@@ -15,7 +15,6 @@ class IFrame extends React.Component {
         }
       });
     }
-
   }
 
   init() {

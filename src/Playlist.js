@@ -2,49 +2,54 @@ import React from 'react';
 import './Playlist.css';
 
 class Thumbnail extends React.Component {
-  // Input: imgUrl
   render() {
+    const imgUrl = this.props.imgUrl;
+
     return (
       <div className="video-thumbnail">
-        <img src={this.props.imgUrl} alt="Thumbnail" />
+        <img src={imgUrl} alt="Thumbnail" />
       </div>
     );
   }
 }
 
 class Info extends React.Component {
-  // Input: title
   render() {
+    const title = this.props.title;
+    
     return (
       <div className="video-info">
-        <span>{this.props.title}</span>
+        <span>{title}</span>
       </div>
     );
   }
 }
 
 class Video extends React.Component {
-  // Input: imgUrl
-
   render() {
+    const imgUrl = this.props.imgUrl;
+    const title = this.props.title;
+
     return (
       <div className="video-container">
-        <Thumbnail imgUrl={this.props.imgUrl} />
-        <Info title={this.props.title} />
+        <Thumbnail imgUrl={imgUrl} />
+        <Info title={title} />
       </div>
     );
   }
 }
 
 class Playlist extends React.Component {
-  // Input: videos[]
-
   render() {
+    const videos = this.props.videos;
+
     return (
       <div id="playlist-container">
-        {this.props.videos.map(video => {
-          return (<Video imgUrl={video.imgUrl} title={video.title} />);
-        })}
+        {videos.map(v => 
+          <Video imgUrl={v.imgUrl}
+            title={v.title}
+            key={v.title} />
+        )}
       </div>
     );
   }
