@@ -32,7 +32,7 @@ class YTPlayer extends React.Component {
   handleSubmitButton(e) {
     e.preventDefault();
 
-    let apiKey = "AIzaSyBgigvE-q9zKH-saSKkOtVrqU52yhLllTQ";
+    let apiKey = "AIzaSyBuvI14GSncamGM4L5OfpJTiiqvkMz_GhY";
     const URL = this.state.inputText;
     const playlistID = extractPlaylistID(URL);
 
