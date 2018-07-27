@@ -1,19 +1,29 @@
 import React from "react";
 
 class IFrame extends React.Component {
-  constructor() {
-    super();
+  // Input: videoId
+
+  constructor(props) {
+    super(props);
     this.init();
 
     window.onYouTubeIframeAPIReady = () => {
-      this.player = new window.YT.Player('player', {
+      window.player = new window.YT.Player('player', {
         height: '405',
         width: '720',
-        videoId: 'M7lc1UVf-VE',
+        videoId: this.props.videoId,
+        playerVars: { 'autoplay': 1 },
         events: {
-
+          onStateChange: this.autoPlay
         }
       });
+    }
+  }
+
+  autoPlay(event) {
+    // If queueing finished, autoplay
+    if (event.data === 5) {
+      window.player.playVideo();
     }
   }
 

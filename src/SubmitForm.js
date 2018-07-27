@@ -2,6 +2,21 @@ import React from 'react';
 
 
 class SubmitForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleInputTextChange = this.handleInputTextChange.bind(this);
+    this.handleSubmitButton = this.handleSubmitButton.bind(this);
+  }
+
+  handleInputTextChange(e) {
+    this.props.handleInputTextChange(e);
+  }
+
+  handleSubmitButton(e) {
+    e.preventDefault();
+    this.props.handleSubmitButton(e);
+  }
+
   render() {
     const inputText = this.props.inputText;
 
@@ -11,8 +26,12 @@ class SubmitForm extends React.Component {
         <input type="text"
           className="form-control"
           placeholder="Enter playlist ID"
-          value={inputText} />
-        <input type="submit" className="btn btn-primary" value="Submit" />
+          value={inputText}
+          onChange={this.handleInputTextChange}/>
+        <button type="submit"
+          className="btn btn-primary"
+          value="Submit"
+          onClick={this.handleSubmitButton}>Submit</button>
       </form>
     );
   }

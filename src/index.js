@@ -3,22 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-import Playlist from './Playlist';
-import IFrame from './IFrame';
-import logo from './logo.svg';
+import YTPlayer from './YTPlayer';
 
-const videos = [];
-for (let i = 0; i < 5; i++) {
-  let video = { imgUrl: logo, title: "LET IT GO " + i };
-  videos.push(video);
-}
 
-ReactDOM.render(
-  <div>
-    <IFrame />
-    <Playlist videos={videos} />
-  </div>,
-  document.getElementById('root')
-);
+
+ReactDOM.render(<YTPlayer videoId="q0yVJUuSZ10"/>, document.getElementById('root'));
 
 registerServiceWorker();
+
