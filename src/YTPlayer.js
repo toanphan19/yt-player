@@ -4,6 +4,8 @@ import IFrame from './IFrame';
 import Playlist from './Playlist';
 import SubmitForm from './SubmitForm';
 
+import './YTPlayer.css';
+
 
 class YTPlayer extends React.Component {
   constructor(props) {
@@ -79,21 +81,19 @@ class YTPlayer extends React.Component {
   render() {
     return (
       <div>
-        <div className="container-fluid d-flex justify-content-center">
+        <div id="player-container" className="container-fluid d-flex justify-content-center">
           <IFrame
             videoId={this.state.iFrameVideoId}
-            height='405'
-            width='720'/>
+            height={window.innerHeight * 0.6}
+            width={window.innerHeight * 0.6 * 16 / 9}/>
           <Playlist
             videos={this.state.videos}
             handleOnClickVideo={this.handleOnClickVideo} />
         </div>
-        <div className="container">
-          <SubmitForm
-            inputText={this.state.inputText}
-            handleInputTextChange={this.handleInputTextChange}
-            handleSubmitButton={this.handleSubmitButton} />
-          </div>
+        <SubmitForm
+          inputText={this.state.inputText}
+          handleInputTextChange={this.handleInputTextChange}
+          handleSubmitButton={this.handleSubmitButton} />
       </div>
     );
   }

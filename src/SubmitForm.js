@@ -21,18 +21,20 @@ class SubmitForm extends React.Component {
     const inputText = this.props.inputText;
 
     return (
-      <form id="add-playlist">
-        <label htmlFor="input-playlist-url">Enter your favourite playlist URL here:</label>
-        <input type="text"
-          className="form-control"
-          placeholder="Enter playlist ID"
-          value={inputText}
-          onChange={this.handleInputTextChange}/>
-        <button type="submit"
-          className="btn btn-outline-success"
-          value="Submit"
-          onClick={this.handleSubmitButton}>Submit</button>
-      </form>
+      <div className="container">
+        <form id="add-playlist">
+          <label htmlFor="input-playlist-url">Enter your favourite playlist URL here:</label>
+          <input type="text"
+            className="form-control"
+            placeholder="Enter playlist ID"
+            value={inputText}
+            onChange={this.handleInputTextChange}/>
+          <button type="submit"
+            className="btn btn-outline-success"
+            value="Submit"
+            onClick={this.handleSubmitButton}>Submit</button>
+        </form>
+      </div>
     );
   }
 }
