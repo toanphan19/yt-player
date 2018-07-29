@@ -32,9 +32,10 @@ class YTPlayer extends React.Component {
   handleSubmitButton(e) {
     e.preventDefault();
 
-    let apiKey = "AIzaSyBuvI14GSncamGM4L5OfpJTiiqvkMz_GhY";
+    let apiKey = process.env.REACT_APP_YT_API_KEY;
+
     const URL = this.state.inputText;
-    const playlistID = extractPlaylistID(URL);
+    const playlistID = extractPlaylistId(URL);
 
     // GET request to youtube data api 
     const request = new XMLHttpRequest();
@@ -102,11 +103,17 @@ export default YTPlayer;
 
 
 // Utilities functions
-function extractPlaylistID(URL) {
+function extractPlaylistId(URL) {
   if (URL.indexOf("list=") > 0) {
-    var idIndex = URL.indexOf("list=") + "list=".length;
-    return URL.slice(idIndex);
+    let startIndex = URL.indexOf("list=") + "list=".length;
+    let endIndex = URL.indexOf("&", startIndex);
+    
+    if (endIndex < 0) {
+      return URL.slice(startIndex);
+    }
+    return URL.slice(startIndex, endIndex);
   }
 
+  console.log("Error: Cannot find playlistId in the URL.");
   return URL;
 }
