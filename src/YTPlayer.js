@@ -64,12 +64,25 @@ class YTPlayer extends React.Component {
 
       window.localStorage.setItem("ytvideos", JSON.stringify(videos));
 
-      // Using window.player like this might good at all, but it's all I can do for now
-
+      // Using window.player like this might not be good, probably?
       window.player.loadPlaylist(this.state.videos.map(x => x.id));
 
     }
     request.send();
+
+    // Test with gapi
+
+    window.gapi.client.youtube.playlistItems.list({
+      'part': 'snippet, contentDetails',
+      'playlistId': playlistID
+    }).then(function (response) {
+      let playlists = response.result.items;
+      console.log("This is gapi talking: ");
+      console.log(playlists);
+    });
+
+    // End of test with gapi
+
   
     const videoId = this.state.inputText;
     this.setState({
